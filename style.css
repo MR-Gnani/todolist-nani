@@ -27,6 +27,7 @@ body{
 
 .input-area {
     position: relative;
+    margin-bottom: 10px;
 }
 
 .task-input {
@@ -99,3 +100,7 @@ body{
     transition: 0.5s;
   }
 
+  .task-done {
+    text-decoration: line-through;
+    background-color: rgb(225, 240, 253);
+  }
