@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'Cafe24Supermagic-Bold-v1.0';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body{
+    margin: 0px;
+    background-image: url(/images/back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Cafe24Supermagic-Bold-v1.0';
+}
+
+.container {
+    width: 90%;
+    height: 80%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.input-area {
+    position: relative;
+}
+
+.task-input {
+    transition: padding-top 0.2s ease, margin-top 0.2s ease;
+    width: 80%;
+    border: none;
+    border: 1px solid rgb(137, 71, 237);
+}
+
+.task-input:focus {
+    outline: none;
+    border-bottom: 3px solid rgb(137, 71, 237);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    transition: 0.5s;
+    padding-top: 35px;
+  }
+
+#add-Button {
+    border: none;
+    background-color: rgb(181, 190, 245);
+}
+
+.task-area{
+    border: 1px solid lightgray;
+}
+
+.task-tabs {
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    position: relative;
+}
+
+.task-tabs div{
+    padding: 1em;
+}
+
+#under-line{
+    height: 4px;
+    background-color: skyblue;
+    position: absolute;
+    width: 52px;
+    left: 0px;
+    top: 52px;
+    padding: 0px;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task span {
+    padding: 1em;
+  }
+
+.button-box {
+    display: flex;
+  }
+  
+.button-box button {
+    color: white;
+    font: 20px;
+    height: 100%;
+    border: none;
+    width: 5em;
+    margin: 0;
+    background-color: rgb(130, 145, 216);
+    transition: 0.5s;
+  }
+
