@@ -27,24 +27,25 @@ body{
 
 .input-area {
     position: relative;
+    width: 50%;
     margin-bottom: 10px;
 }
 
-.task-input {
+#task-input {
     transition: padding-top 0.2s ease, margin-top 0.2s ease;
     width: 80%;
     border: none;
     border: 1px solid rgb(137, 71, 237);
 }
 
-.task-input:focus {
+#task-input:focus {
     outline: none;
     border-bottom: 3px solid rgb(137, 71, 237);
     border-left: none;
     border-right: none;
     border-top: none;
     transition: 0.5s;
-    padding-top: 35px;
+    padding-top: 5px;
   }
 
 #add-Button {

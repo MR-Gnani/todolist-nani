@@ -33,12 +33,13 @@ function getTaskItem(task){
          <span>${task.taskContent}</span>
          <div class="button-box">
              <button onclick="toggleComplete('${task.id}')"> Check </button>
-             <button onclick="deleteTask()"> Delete </button>
+             <button onclick="deleteTask('${task.id}')"> Delete </button>
          </div>
      </div>`
      return item;
 }
 
+// 할일 완료 표시
 function toggleComplete(id){
     // id값이 동일한 아이템 선택
     let Status = $(`#taskItem-${id}`);
@@ -50,6 +51,7 @@ function toggleComplete(id){
     }
 }
 
-function deleteTask(){
-    console.log("삭제하다");
+// 할일 삭제하기
+function deleteTask(id){
+    $(`#taskItem-${id}`).remove();
 }
