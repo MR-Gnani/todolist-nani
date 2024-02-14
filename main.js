@@ -1,29 +1,48 @@
 let taskInput = $(`#task-input`);
+let taskBoard = $(`#task-board`);
 
-// 버튼 클릭 시 render함수 호출
-$(`#add-Button`).on("click", render);
-$('#task-input').keypress(function(e) { // Enter키 누르면 render함수 호출
+// 버튼 클릭 시 render, scrollBottom 호출
+$(`#add-Button`).on("click", function(){
+    render();
+    scrollBottom();
+});
+$('#task-input').keypress(function(e) { // Enter키 설정
     if (e.which === 13) { 
         render();
+        scrollBottom();
     }
 });
+
+// 스크롤 위치를 하단으로 변경하는 함수
+function scrollBottom(){
+    // console.log("나 호출됨?")
+    // console.log(taskBoard.prop("scrollHeight"));
+    // console.log(taskBoard.scrollTop());
+    taskBoard.scrollTop(taskBoard.prop("scrollHeight"));
+}
 
 // 랜덤 번호(ID값) 생성
 function randomIdGenerate(){
     return '_' + Math.random().toString(36).substring(2,9)
 }
 
+// 할일 등록하기
 function render(){
-   //객체생성
-   let task = {
-        id: randomIdGenerate(),
-        taskContent: taskInput.val()
-   }
-   //가져온 값 taskItem에 넣고 보드에 뿌려주기
-   let taskItem = getTaskItem(task);
-   $("#task-board").append(taskItem);
-   //인풋필드 비우기
-   taskInput.val("");
+    if(taskInput.val()==""){
+        // 유효성 체크(빈값)
+        $(`#complete-Button`).prop("disabled",true);
+    }else{
+        //객체생성
+        let task = {
+            id: randomIdGenerate(),
+            taskContent: taskInput.val()
+        }
+        //가져온 값 taskItem에 넣고 보드에 뿌려주기
+        let taskItem = getTaskItem(task);
+        $("#task-board").append(taskItem);
+        //인풋필드 비우기
+        taskInput.val("");
+    }
 }
 
 // 입력값 가져오기
@@ -32,7 +51,7 @@ function getTaskItem(task){
     `<div class="task" id="taskItem-${task.id}">
          <span>${task.taskContent}</span>
          <div class="button-box">
-             <button onclick="toggleComplete('${task.id}')"> Check </button>
+             <button id= "complete-Button" onclick="toggleComplete('${task.id}')"> Check </button>
              <button onclick="deleteTask('${task.id}')"> Delete </button>
          </div>
      </div>`

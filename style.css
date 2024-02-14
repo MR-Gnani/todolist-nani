@@ -110,6 +110,7 @@ body{
   }
 
   #task-board {
+    height: 333px;
     overflow: hidden;
 	overflow-y: auto;
   }
