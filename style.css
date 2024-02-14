@@ -57,13 +57,13 @@ body{
 .task-area{
     border: 1px solid lightgray;
     height: 80%;
-    overflow: hidden;
 }
 
 .task-tabs {
     display: flex;
     border-bottom: 1px solid lightgray;
     position: relative;
+    height: 12%;
 }
 
 .task-tabs div{
@@ -109,8 +109,8 @@ body{
     background-color: rgb(225, 240, 253);
   }
 
-  #task-board {
-    height: 333px;
+  .task-boards {
+    height: 88%;
     overflow: hidden;
 	overflow-y: auto;
   }
