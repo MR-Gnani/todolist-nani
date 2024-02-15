@@ -1,12 +1,11 @@
 let taskInput = $(`#task-input`);
 let dateInput = $(`#date-input`);
 let taskBoard = $(`#task-board`);
-
 // 버튼 클릭 시 render, scrollBottom 호출
 $(`#add-Button`).on("click", function(){
     render();
     scrollBottom();
-});
+}); 
 
 // Enter키 설정
 $('.enter-press').keypress(function(e) { 
@@ -118,5 +117,16 @@ function deleteTask(id){
 
 // 데드라인 임박 task view
 function comeDeadline() {
-    console.log()
+    // 현재 날짜
+    let today = new Date();
+
+    $(".task").each(function () {
+        let dLine = new Date($(this).find(".dateView").text());
+        let diff = Math.abs(dLine.getTime()-today.getTime());
+        diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        
+        if(diff<3){
+            $(this).find(".dateView").toggleClass("deadline");
+        }
+    }); 
 }

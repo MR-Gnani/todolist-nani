@@ -40,6 +40,7 @@ body{
 
 .left {
     display: flex;
+    width: 80%;
 }
 
 input[type='date']::before {
@@ -54,14 +55,14 @@ input[type='date']:valid::before {
 
 #date-input {
     margin-left: 10px;
-    width: 50%;
+    width: 30%;
     border: none;
     border-bottom: 1px solid rgb(222, 208, 244);
 }
 
 #task-input {
     transition: padding-top 0.2s ease, margin-top 0.2s ease;
-    width: 80%;
+    width: 50%;
     border: none;
     border: 1px solid rgb(137, 71, 237);
 }
@@ -111,6 +112,8 @@ input[type='date']:valid::before {
     border-bottom: 1px solid lightgray;
     position: relative;
     height: 50px;
+    color: white;
+    background-color: rgb(212, 223, 246);
 }
 
 .task-tabs div{
@@ -137,7 +140,7 @@ input[type='date']:valid::before {
 
 .task-done {
     text-decoration: line-through;
-    background-color: rgb(225, 240, 253);
+    background-color: rgb(250, 249, 232);
   }
 
 .task span {
@@ -166,3 +169,5 @@ input[type='date']:valid::before {
 .deadline {
     background-color: rgb(253, 225, 225);
   }
+
+  
