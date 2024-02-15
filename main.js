@@ -1,6 +1,7 @@
 let taskInput = $(`#task-input`);
 let dateInput = $(`#date-input`);
 let taskBoard = $(`#task-board`);
+
 // 버튼 클릭 시 render, scrollBottom 호출
 $(`#add-Button`).on("click", function(){
     render();
@@ -120,9 +121,13 @@ function comeDeadline() {
     // 현재 날짜
     let today = new Date();
 
-    $(".task").each(function () {
+    // task클래스를 가진 요소들 순회
+    $(".task").each(function () { 
+        // "2024-02-15"와 같은 날짜를 new date()함수 사용하여 새 변수 할당
         let dLine = new Date($(this).find(".dateView").text());
+        // 마감기한 - 오늘날짜 계산, getTime()은 현재시간을 밀리초로 반환
         let diff = Math.abs(dLine.getTime()-today.getTime());
+        // 따라서 하루를 밀리초로 나타내기 위해 1000을 곱함
         diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
         
         if(diff<3){
