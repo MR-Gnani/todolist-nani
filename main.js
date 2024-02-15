@@ -6,11 +6,19 @@ $(`#add-Button`).on("click", function(){
     render();
     scrollBottom();
 });
-$('#task-input').keypress(function(e) { // Enter키 설정
+
+// Enter키 설정
+$('#task-input').keypress(function(e) { 
     if (e.which === 13) { 
         render();
         scrollBottom();
     }
+});
+
+// 탭 버튼 클릭(all, ing, completed)
+$(`.task-tabs div`).on("click", function() {
+    let select = $(this).attr("id");
+    filter(select);
 });
 
 // 스크롤 위치를 하단으로 변경하는 함수
@@ -37,6 +45,8 @@ function render(){
             id: randomIdGenerate(),
             taskContent: taskInput.val()
         }
+        console.log(task);
+
         //가져온 값 taskItem에 넣고 보드에 뿌려주기
         let taskItem = getTaskItem(task);
         $("#task-board").append(taskItem);
@@ -69,6 +79,34 @@ function toggleComplete(id){
         Status.addClass("task-done");
     }
 }
+
+// ALl, ING, COMPLETED 필터
+function filter(select){
+    if(select === "all"){
+      viewAll();
+    } else if(select === "ing"){
+      viewIngTasks();
+    } else if(select === "completed"){
+      viewCompletedTasks();
+    }
+  }
+
+// All
+function viewAll() {
+    $(".task").show();
+  }
+
+// Ing
+function viewIngTasks() {
+    $(".task").hide();
+    $(".task:not(.task-done)").show();
+  }
+
+// Completed
+function viewCompletedTasks() {
+    $(".task").hide();
+    $(".task.task-done").show();
+  }
 
 // 할일 삭제하기
 function deleteTask(id){

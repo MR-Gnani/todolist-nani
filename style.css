@@ -68,16 +68,7 @@ body{
 
 .task-tabs div{
     padding: 1em;
-}
-
-#under-line{
-    height: 4px;
-    background-color: rgb(135, 155, 235);
-    position: absolute;
-    width: 52px;
-    left: 0px;
-    top: 52px;
-    padding: 0px;
+    cursor: pointer;
 }
 
 .task {
@@ -114,3 +105,4 @@ body{
     overflow: hidden;
 	overflow-y: auto;
   }
+
