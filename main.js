@@ -2,6 +2,7 @@ let taskInput = $(`#task-input`);
 let dateInput = $(`#date-input`);
 let taskBoard = $(`#task-board`);
 let underLine = $(`#tab-underline`);
+let sortStatus = true;
 
 // 버튼 클릭 시 render, scrollBottom 호출
 $(`#add-Button`).on("click", function(){
@@ -22,8 +23,13 @@ $(`.task-tabs div`).on("click", function() {
     // 탭 버튼의 id값 할당
     let select = $(this).attr("id");
     moveUnderline(select);
-    filter(select);
+    tabsFilter(select);
 });
+
+// 정렬 
+$(`#sort-icon`).on("click", function(){
+    sortByDeadline();
+})
 
 // 스크롤 위치를 하단으로 변경하는 함수
 function scrollBottom(){
@@ -92,17 +98,15 @@ function moveUnderline(select){
     let button = $(`#${select}`);
     // 탭버튼 좌표정보 가져오기
     let buttonPosition = button.position();
-
-    underLine.animate({
-        // left위치와 너비 설정, 이동속도는 100밀리초
-        left: buttonPosition.left,
-        width: button.outerWidth()
-    }, 100);
+        underLine.animate({
+            // left위치와 너비 설정, 이동속도는 100밀리초
+            left: buttonPosition.left,
+            width: button.outerWidth()
+        }, 100);
 }
 
 // ALl, ING, COMPLETED 필터
-function filter(select){
-
+function tabsFilter(select){
     if(select === "all"){
       viewAll();
     } else if(select === "ing"){
@@ -152,4 +156,24 @@ function comeDeadline() {
             $(this).find(".dateView").toggleClass("deadline");
         }
     }); 
+}
+
+function sortByDeadline() {
+    let tasks = $(".task");
+
+    tasks.sort(function (a, b) {
+        let dateA = new Date($(a).find(".dateView").text());
+        let dateB = new Date($(b).find(".dateView").text());
+
+        // 마감기한이 비어있는 경우 처리
+        if (isNaN(dateA)) {
+            return sortStatus ? 1 : -1;
+        } else if (isNaN(dateB)) {
+            return sortStatus ? -1 : 1;
+        }
+        
+        return sortStatus ? dateA - dateB : dateB - dateA;
+    });
+    $("#task-board").empty().append(tasks);
+    sortStatus = !sortStatus;
 }
