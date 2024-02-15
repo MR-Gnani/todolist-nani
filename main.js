@@ -1,6 +1,7 @@
 let taskInput = $(`#task-input`);
 let dateInput = $(`#date-input`);
 let taskBoard = $(`#task-board`);
+let underLine = $(`#tab-underline`);
 
 // 버튼 클릭 시 render, scrollBottom 호출
 $(`#add-Button`).on("click", function(){
@@ -18,7 +19,9 @@ $('.enter-press').keypress(function(e) {
 
 // 탭 버튼 클릭(all, ing, completed)
 $(`.task-tabs div`).on("click", function() {
+    // 탭 버튼의 id값 할당
     let select = $(this).attr("id");
+    moveUnderline(select);
     filter(select);
 });
 
@@ -83,8 +86,23 @@ function toggleComplete(id){
     }
 }
 
+// 언더바 이동 함수
+function moveUnderline(select){
+    // 탭버튼 id 값
+    let button = $(`#${select}`);
+    // 탭버튼 좌표정보 가져오기
+    let buttonPosition = button.position();
+
+    underLine.animate({
+        // left위치와 너비 설정, 이동속도는 100밀리초
+        left: buttonPosition.left,
+        width: button.outerWidth()
+    }, 100);
+}
+
 // ALl, ING, COMPLETED 필터
 function filter(select){
+
     if(select === "all"){
       viewAll();
     } else if(select === "ing"){
