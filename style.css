@@ -22,14 +22,41 @@ body{
     height: 80%;
     padding: 20px;
     overflow: hidden;
+    margin-bottom: 1em; 
     background-color: rgba(255, 255, 255, 0.95);
     box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
+
+/* Section 1 Start */
 .input-area {
     position: relative;
-    width: 50%;
+    width: 100%;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left {
+    display: flex;
+}
+
+input[type='date']::before {
+    content: attr(data-placeholder);
+    width: 100%;
+}
+
+input[type='date']:focus::before,
+input[type='date']:valid::before {
+    display: none;
+}
+
+#date-input {
+    margin-left: 10px;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid rgb(222, 208, 244);
 }
 
 #task-input {
@@ -54,16 +81,36 @@ body{
     background-color: rgb(181, 190, 245);
 }
 
-.task-area{
-    border: 1px solid lightgray;
-    height: 80%;
+#danger-Button {
+    border: none;
+    background-color: white;
+} 
+
+.input-area button {
+    margin: 0;
 }
 
+.fa-exclamation-circle {
+    color: rgb(233, 156, 156); 
+    font-size: 25px;
+}
+/* Section 1 End */
+
+/* Section 2 Start */
+.task-area{
+    border: 1px solid lightgray;
+    height: calc(80% - 0.5em);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.5em; 
+}
+
+/* 탭 영역 */
 .task-tabs {
     display: flex;
     border-bottom: 1px solid lightgray;
     position: relative;
-    height: 12%;
+    height: 50px;
 }
 
 .task-tabs div{
@@ -71,10 +118,27 @@ body{
     cursor: pointer;
 }
 
+/* 보드 영역 */
+.task-boards {
+    height: 88%;
+    overflow: hidden;
+	overflow-y: auto;
+  }
+
 .task {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid lightgray;
 }
+
+.task:hover{
+    background-color: rgb(250, 249, 232);
+}
+
+.task-done {
+    text-decoration: line-through;
+    background-color: rgb(225, 240, 253);
+  }
 
 .task span {
     padding: 1em;
@@ -95,14 +159,10 @@ body{
     transition: 0.5s;
   }
 
-  .task-done {
-    text-decoration: line-through;
-    background-color: rgb(225, 240, 253);
-  }
+.dateView {
+    color: rgb(130, 145, 216);
+}
 
-  .task-boards {
-    height: 88%;
-    overflow: hidden;
-	overflow-y: auto;
+.deadline {
+    background-color: rgb(253, 225, 225);
   }
-

@@ -9,15 +9,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- 스타일 -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <div class="container">
         <h1>Todo List</h1>
         <section class="input-area">
-            <input type="text" id="task-input"/>
+            <div class="left">
+            <input class="enter-press" type="text" id="task-input"/>
+            <input class="enter-press" type="date" id="date-input" data-placeholder="마감기한 설정" required aria-required="true"/>
             <button id="add-Button"> + </button>
+            </div>
+            <button id="danger-Button" onclick="comeDeadline()">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            </button>
+
         </section>
 
         <section class="task-area">

@@ -1,4 +1,5 @@
 let taskInput = $(`#task-input`);
+let dateInput = $(`#date-input`);
 let taskBoard = $(`#task-board`);
 
 // 버튼 클릭 시 render, scrollBottom 호출
@@ -8,7 +9,7 @@ $(`#add-Button`).on("click", function(){
 });
 
 // Enter키 설정
-$('#task-input').keypress(function(e) { 
+$('.enter-press').keypress(function(e) { 
     if (e.which === 13) { 
         render();
         scrollBottom();
@@ -43,15 +44,16 @@ function render(){
         //객체생성
         let task = {
             id: randomIdGenerate(),
-            taskContent: taskInput.val()
+            taskContent: taskInput.val(),
+            taskDeadline: dateInput.val()
         }
         console.log(task);
-
         //가져온 값 taskItem에 넣고 보드에 뿌려주기
         let taskItem = getTaskItem(task);
         $("#task-board").append(taskItem);
         //인풋필드 비우기
         taskInput.val("");
+        dateInput.val("");
     }
 }
 
@@ -61,6 +63,7 @@ function getTaskItem(task){
     `<div class="task" id="taskItem-${task.id}">
          <span>${task.taskContent}</span>
          <div class="button-box">
+             <span class="dateView" id="t-deadline"> ${task.taskDeadline} </span>
              <button id= "complete-Button" onclick="toggleComplete('${task.id}')"> Check </button>
              <button onclick="deleteTask('${task.id}')"> Delete </button>
          </div>
@@ -111,4 +114,9 @@ function viewCompletedTasks() {
 // 할일 삭제하기
 function deleteTask(id){
     $(`#taskItem-${id}`).remove();
+}
+
+// 데드라인 임박 task view
+function comeDeadline() {
+    console.log()
 }
