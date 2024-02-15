@@ -2,7 +2,7 @@ let taskInput = $(`#task-input`);
 let dateInput = $(`#date-input`);
 let taskBoard = $(`#task-board`);
 let underLine = $(`#tab-underline`);
-let sortStatus = true;
+let sortStatus = true; // 정렬 방향
 
 // 버튼 클릭 시 render, scrollBottom 호출
 $(`#add-Button`).on("click", function(){
@@ -96,13 +96,17 @@ function toggleComplete(id){
 function moveUnderline(select){
     // 탭버튼 id 값
     let button = $(`#${select}`);
-    // 탭버튼 좌표정보 가져오기
-    let buttonPosition = button.position();
+
+    if(button.length > 0){ // 조건식이 없으면 정렬 아이콘 클릭시 에러메세지 발생
+        // 탭버튼 좌표정보 가져오기
+        let buttonPosition = button.position();
+
         underLine.animate({
             // left위치와 너비 설정, 이동속도는 100밀리초
             left: buttonPosition.left,
             width: button.outerWidth()
         }, 100);
+    }
 }
 
 // ALl, ING, COMPLETED 필터
@@ -158,6 +162,7 @@ function comeDeadline() {
     }); 
 }
 
+// 마감기한 순 정렬
 function sortByDeadline() {
     let tasks = $(".task");
 
@@ -165,15 +170,15 @@ function sortByDeadline() {
         let dateA = new Date($(a).find(".dateView").text());
         let dateB = new Date($(b).find(".dateView").text());
 
-        // 마감기한이 비어있는 경우 처리
+        // 마감기한이 비어있는 경우
         if (isNaN(dateA)) {
             return sortStatus ? 1 : -1;
         } else if (isNaN(dateB)) {
             return sortStatus ? -1 : 1;
         }
-        
+
         return sortStatus ? dateA - dateB : dateB - dateA;
     });
     $("#task-board").empty().append(tasks);
-    sortStatus = !sortStatus;
+    sortStatus = !sortStatus; // toggle기능
 }
