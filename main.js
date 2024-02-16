@@ -20,6 +20,9 @@ $('.enter-press').keypress(function(e) {
 
 // 탭 버튼 클릭(all, ing, completed)
 $(`.task-tabs div`).on("click", function() {
+    // 현재 선택된 탭 표시
+    $(this).addClass("selected").siblings().removeClass("selected");
+
     // 탭 버튼의 id값 할당
     let select = $(this).attr("id");
     moveUnderline(select);
@@ -89,6 +92,17 @@ function toggleComplete(id){
         Status.removeClass("task-done");
     } else {
         Status.addClass("task-done");
+    }
+
+    // 현재 선택된 탭에 따라 동작
+    let selectedTab = $(".task-tabs div.selected").attr("id");
+
+    if (selectedTab === "ing" && Status.hasClass("task-done")) {
+        // Ing 탭에서 Complete 버튼을 눌렀을 때 사라지게 함
+        Status.hide();
+    } else if (selectedTab === "completed" && !Status.hasClass("task-done")) {
+        // Completed 탭에서 Complete 버튼을 눌렀을 때 사라지게 함
+        Status.hide();
     }
 }
 
