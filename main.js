@@ -2,7 +2,7 @@ let taskInput = $(`#task-input`);
 let dateInput = $(`#date-input`);
 let taskBoard = $(`#task-board`);
 let underLine = $(`#tab-underline`);
-let sortStatus = true; // 정렬 방향
+let sortStatus = true; // 정렬 방향(true=오름 false=내림)
 
 // 버튼 클릭 시 render, scrollBottom 호출
 $(`#add-Button`).on("click", function(){
@@ -61,7 +61,7 @@ function render(){
         let taskItem = getTaskItem(task);
         $("#task-board").append(taskItem);
         //인풋필드 비우기
-        taskInput.val("");
+        taskInput.val("").focus();
         dateInput.val("");
     }
 }
