@@ -185,12 +185,16 @@ function sortByDeadline() {
         let dateB = new Date($(b).find(".dateView").text());
 
         // 마감기한이 비어있는 경우
+        // date A가 비어있으면 1(양수) 출력해서 b가 앞으로
         if (isNaN(dateA)) {
             return sortStatus ? 1 : -1;
+        // date B가 비어있으면 -1(음수) 출력해서 a가 앞으로
         } else if (isNaN(dateB)) {
             return sortStatus ? -1 : 1;
         }
-
+        // sort 함수는 음수일때 a가 앞으로 양수일때 b가 앞으로
+        // date A가 date B 보다 크면 양수라서 b가 앞으로
+        // date A가 date B 보다 작으면 음수라서 a가 앞으로
         return sortStatus ? dateA - dateB : dateB - dateA;
     });
     $("#task-board").empty().append(tasks);
